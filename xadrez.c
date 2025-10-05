@@ -1,36 +1,63 @@
 #include <stdio.h>
 
+void moverBispoRecursivo(int n);
+void moverTorreRecursivo(int n);
+void moverRainhaRecursiva(int n);
+
 int main() {
-    
-    const int BISPO_MOV = 5;
-    const int TORRE_MOV = 5;
-    const int RAINHA_MOV = 8;
+    int i, j, x, y;
 
-    printf("=== MOVIMENTAÇÃO DAS PEÇAS - NÍVEL NOVATO ===\n\n");
-
-    
-    printf("Movimentação do Bispo:\n");
-    for (int i = 1; i <= BISPO_MOV; i++) {
-        printf("Cima + Direita (%d)\n", i);
+    for (i = 1; i <= 5; i++) {
+        printf("Bispo: Diagonal Superior Direita (%d)\n", i);
     }
 
-  
-    printf("\nMovimentação da Torre:\n");
-    int t = 1;
-    while (t <= TORRE_MOV) {
-        printf("Direita (%d)\n", t);
-        t++;
+    for (i = 1; i <= 5; i++) {
+        printf("Torre: Direita (%d)\n", i);
     }
 
- 
-    printf("\nMovimentação da Rainha:\n");
-    int r = 1;
-    do {
-        printf("Esquerda (%d)\n", r);
-        r++;
-    } while (r <= RAINHA_MOV);
+    for (i = 1; i <= 8; i++) {
+        printf("Rainha: Esquerda (%d)\n", i);
+    }
 
-    printf("\n=== Fim dos movimentos ===\n");
+    for (i = 1; i <= 2; i++) {
+        printf("Cavalo: Baixo (%d)\n", i);
+        for (j = 1; j <= 2; j++) {
+            printf("Cavalo: Esquerda (%d,%d)\n", i, j);
+        }
+    }
+
+    moverBispoRecursivo(5);
+    moverTorreRecursivo(5);
+    moverRainhaRecursiva(8);
+
+    for (x = 1, y = 1; x <= 3 && y <= 3; x++, y++) {
+        if (x == 2) {
+            printf("Cavalo: Subir\n");
+            continue;
+        }
+        if (x == 3) {
+            printf("Cavalo: Direita\n");
+            break;
+        }
+    }
 
     return 0;
+}
+
+void moverBispoRecursivo(int n) {
+    if (n == 0) return;
+    printf("Bispo (Recursivo): Diagonal Direita Cima (%d)\n", n);
+    moverBispoRecursivo(n - 1);
+}
+
+void moverTorreRecursivo(int n) {
+    if (n == 0) return;
+    printf("Torre (Recursivo): Direita (%d)\n", n);
+    moverTorreRecursivo(n - 1);
+}
+
+void moverRainhaRecursiva(int n) {
+    if (n == 0) return;
+    printf("Rainha (Recursivo): Esquerda (%d)\n", n);
+    moverRainhaRecursiva(n - 1);
 }
